@@ -120,3 +120,38 @@ select
     concat(day(order_date), '-', month(order_date), '-', year(order_date)) as order_date
 from orders;
 
+-- 6.	Calculate the total revenue for orders in January 2025:
+select * from orders;
+
+select sum(total_amount) as total
+from orders
+where month(order_date) = 1 and year(order_date) = 2025;
+
+select sum(total_amount) as total
+from orders
+where monthname(order_date) = 'January' and year(order_date) = 2025;
+
+select * from orders;
+
+select monthname(now());
+
+-- 7.	Add 15 days to each order's date:
+
+select order_date, date_add(order_date, interval 15 day) as order_date
+from orders;
+
+-- 9.	Retrieve the day of the week for each order:
+
+select dayname(order_date) from orders;
+
+-- 10.	Find orders placed on weekends:
+select * from orders
+where dayname(order_date) in ('Saturday', 'Sunday');
+
+select * from orders
+where dayofweek(order_date) in (1, 7);
+
+
+select order_date, dayname(order_date) from orders;
+select * from orders;
+
